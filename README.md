@@ -26,4 +26,4 @@ AIvestforblind는 시각장애인의 안전한 보행을 돕기 위한 AI기반 
 ## 📂 Downloads
 🔍[관련 기술 및 서비스 조사](https://github.com/Eoullim2026/AIvestforblind/blob/main/downloads/%EA%B4%80%EB%A0%A8%EA%B8%B0%EC%88%A0%20%EB%B0%8F%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%A1%B0%EC%82%AC.pdf)
 
-🔍[부품 조사](https://github.com/Eoullim2026/AIvestforblind/blob/main/downloads/%EB%B6%80%ED%92%88.pdf)
+🛠️[부품 조사](https://github.com/Eoullim2026/AIvestforblind/blob/main/downloads/%EB%B6%80%ED%92%88.pdf)
