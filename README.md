@@ -24,6 +24,4 @@ AIvestforblind는 시각장애인의 안전한 보행을 돕기 위한 AI기반 
 [Figma 화면 설계 바로가기](https://www.figma.com/make/VddXL27oS7JkBa57cg4lvt/Admin-site-for-obstacle-detection?fullscreen=1&t=ap33K5yk8CCTmbE4-1)
 
 ## 📂 Downloads
-<details>
 📥 [관련 기술 및 서비스 조사](./downloads/관련기술 및 서비스 조사.pdf)
-</details>
