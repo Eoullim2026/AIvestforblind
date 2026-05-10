@@ -125,19 +125,20 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import type { DetectionLog, BoundingBox, DangerAlert } from '@/types/device'
 
 const isConnected = ref(false)
 const isConnecting = ref(false)
 const showSettingModal = ref(false)
 const showLogVideoModal = ref(false)
-const selectedLog = ref(null)
+const selectedLog = ref<DetectionLog | null>(null)
 
-const logs = ref([])
-const activeBoxes = ref([])
-const currentAlert = ref(null)
-let simulationTimers = []
+const logs = ref<DetectionLog[]>([])
+const activeBoxes = ref<BoundingBox[]>([])
+const currentAlert = ref<DangerAlert | null>(null)
+let simulationTimers: ReturnType<typeof setTimeout>[] = []
 
 // [시뮬레이션 데이터]
 const scenario = [
@@ -197,7 +198,7 @@ const startSimulation = () => {
   });
 }
 
-const openLogVideo = (log) => {
+const openLogVideo = (log: DetectionLog) => {
   selectedLog.value = log
   showLogVideoModal.value = true
 }
