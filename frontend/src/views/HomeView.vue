@@ -230,11 +230,21 @@
 <script setup>
 import { ref } from 'vue'
 
-const activeStreamUrl = ref('http://220.69.21.83:8889/vest/')
-const draftStreamUrl = ref('http://220.69.21.83:8889/vest/')
+const getDefaultStreamUrl = () => `${window.location.origin}/vest/`
+const getDefaultWsUrl = () => {
+  const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
 
-const activeWsUrl = ref('ws://220.69.21.83:8765')
-const draftWsUrl = ref('ws://220.69.21.83:8765')
+  return `${wsProtocol}//${window.location.host}/ws`
+}
+
+const defaultStreamUrl = getDefaultStreamUrl()
+const defaultWsUrl = getDefaultWsUrl()
+
+const activeStreamUrl = ref(defaultStreamUrl)
+const draftStreamUrl = ref(defaultStreamUrl)
+
+const activeWsUrl = ref(defaultWsUrl)
+const draftWsUrl = ref(defaultWsUrl)
 
 const isConnected = ref(false)
 const isConnecting = ref(false)
@@ -260,7 +270,7 @@ const openSettingModal = () => {
 
 const saveConnectionSettings = () => {
   activeStreamUrl.value = normalizeStreamUrl(draftStreamUrl.value)
-  activeWsUrl.value = draftWsUrl.value.trim()
+  activeWsUrl.value = normalizeWsUrl(draftWsUrl.value)
   showSettingModal.value = false
 
   if (isConnected.value) {
@@ -282,11 +292,27 @@ const normalizeStreamUrl = (url) => {
   const trimmed = url.trim()
 
   if (!trimmed) {
-    return 'http://220.69.21.83:8889/vest/'
+    return defaultStreamUrl
   }
 
-  if (trimmed.includes(':8889') && !trimmed.endsWith('/')) {
+  if (trimmed.endsWith('/vest')) {
     return `${trimmed}/`
+  }
+
+  return trimmed
+}
+
+const normalizeWsUrl = (url) => {
+  const trimmed = url.trim()
+
+  if (!trimmed) {
+    return defaultWsUrl
+  }
+
+  if (trimmed.startsWith('/')) {
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+
+    return `${wsProtocol}//${window.location.host}${trimmed}`
   }
 
   return trimmed
